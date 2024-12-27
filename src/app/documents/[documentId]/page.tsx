@@ -3,7 +3,7 @@ import { Editor } from "./editor";
 
 const DocumentIdPage = () => {
   return (
-    <div>
+    <div className="min-h-screen bg-[#FAFBFE]">
       <Editor />
     </div>
   );
