@@ -7,9 +7,12 @@ import { useEditorStore } from "@/store/use-editor-store";
 import {
   Bold,
   Italic,
+  ListTodo,
   LucideIcon,
+  MessageSquarePlus,
   Printer,
   Redo2,
+  RemoveFormatting,
   SpellCheck,
   Underline,
   Undo2,
@@ -98,6 +101,25 @@ export const Toolbar = () => {
         onClick: () => editor?.chain().focus().toggleUnderline().run(),
       },
     ],
+    [
+      {
+        label: "Comment",
+        icon: MessageSquarePlus,
+        isActive: false,
+        onClick: () => console.log("Todo comment"),
+      },
+      {
+        label: "List Todo",
+        icon: ListTodo,
+        isActive: editor?.isActive("taskList"),
+        onClick: () => editor?.chain().focus().toggleTaskList().run(),
+      },
+      {
+        label: "Remove Formatting",
+        icon: RemoveFormatting,
+        onClick: () => editor?.chain().focus().unsetAllMarks().run(),
+      },
+    ],
   ];
 
   return (
@@ -113,6 +135,17 @@ export const Toolbar = () => {
       {/* Font Size */}
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       {sections[1].map((item) => (
+        <ToolbarButton key={item.label} {...item} />
+      ))}
+      {/* Text Color */}
+      {/* Highlight Color */}
+      <Separator orientation="vertical" className="h-6 bg-neutral-300" />
+      {/* Link */}
+      {/* Image */}
+      {/* Align */}
+      {/* Line Height */}
+      {/* List */}
+      {sections[2].map((item) => (
         <ToolbarButton key={item.label} {...item} />
       ))}
     </div>
