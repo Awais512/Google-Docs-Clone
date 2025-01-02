@@ -15,6 +15,9 @@ import Image from "@tiptap/extension-image";
 import ImageResize from "tiptap-extension-resize-image";
 import FontFamily from "@tiptap/extension-font-family";
 import TextStyle from "@tiptap/extension-text-style";
+import Highlight from "@tiptap/extension-highlight";
+import { Color } from "@tiptap/extension-color";
+
 import { useEditorStore } from "@/store/use-editor-store";
 
 export const Editor = () => {
@@ -59,6 +62,7 @@ export const Editor = () => {
       Underline,
       FontFamily,
       TextStyle,
+      Color,
       Table,
       TableCell,
       TableHeader,
@@ -68,6 +72,7 @@ export const Editor = () => {
       Heading.configure({
         levels: [1, 2, 3, 4, 5, 6],
       }),
+      Highlight.configure({ multicolor: true }),
     ],
     content: `
     <table>
