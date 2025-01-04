@@ -16,6 +16,7 @@ import ImageResize from "tiptap-extension-resize-image";
 import FontFamily from "@tiptap/extension-font-family";
 import TextStyle from "@tiptap/extension-text-style";
 import Highlight from "@tiptap/extension-highlight";
+import Link from "@tiptap/extension-link";
 import { Color } from "@tiptap/extension-color";
 
 import { useEditorStore } from "@/store/use-editor-store";
@@ -73,6 +74,12 @@ export const Editor = () => {
         levels: [1, 2, 3, 4, 5, 6],
       }),
       Highlight.configure({ multicolor: true }),
+      Link.configure({
+        openOnClick: false,
+        autolink: true,
+        defaultProtocol: "https",
+        protocols: ["http", "https"],
+      }),
     ],
     content: `
     <table>
