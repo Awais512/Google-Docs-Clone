@@ -67,6 +67,11 @@ const AlignButton = () => {
       icon: AlignRightIcon,
     },
     {
+      label: "Align Center",
+      value: "center",
+      icon: AlignCenter,
+    },
+    {
       label: "Align justify",
       value: "justify",
       icon: AlignJustifyIcon,
