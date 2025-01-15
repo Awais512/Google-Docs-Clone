@@ -6,12 +6,13 @@ import { Navbar } from "./navbar";
 import { TemplatesGallery } from "./templates-gallery";
 import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
+import { FullscreenLoader } from "@/components/fullscreen-loader";
 
 export default function Home() {
   const documents = useQuery(api.documents.get);
 
   if (!documents) {
-    return <p>Loading...</p>;
+    return <FullscreenLoader label="Documents Loading..." />;
   }
 
   return (
