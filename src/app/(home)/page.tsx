@@ -5,6 +5,7 @@ import { TemplatesGallery } from "./templates-gallery";
 import { usePaginatedQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { FullscreenLoader } from "@/components/fullscreen-loader";
+import { DocumentsTable } from "./documents-table";
 
 export default function Home() {
   const { results, status, loadMore } = usePaginatedQuery(
@@ -24,10 +25,12 @@ export default function Home() {
       </div>
       <div className="mt-16">
         <TemplatesGallery />
+        <DocumentsTable
+          documents={results}
+          loadMore={loadMore}
+          status={status}
+        />
       </div>
-      {results.map((doc) => (
-        <p key={doc._id}>{doc.title}</p>
-      ))}
     </div>
   );
 }
