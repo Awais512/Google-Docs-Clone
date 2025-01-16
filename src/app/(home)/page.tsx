@@ -1,17 +1,19 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { Navbar } from "./navbar";
 import { TemplatesGallery } from "./templates-gallery";
-import { useQuery } from "convex/react";
+import { usePaginatedQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { FullscreenLoader } from "@/components/fullscreen-loader";
 
 export default function Home() {
-  const documents = useQuery(api.documents.get);
+  const { results, status, loadMore } = usePaginatedQuery(
+    api.documents.get,
+    {},
+    { initialNumItems: 5 }
+  );
 
-  if (!documents) {
+  if (results === undefined) {
     return <FullscreenLoader label="Documents Loading..." />;
   }
 
@@ -23,7 +25,7 @@ export default function Home() {
       <div className="mt-16">
         <TemplatesGallery />
       </div>
-      {documents.map((doc) => (
+      {results.map((doc) => (
         <p key={doc._id}>{doc.title}</p>
       ))}
     </div>
