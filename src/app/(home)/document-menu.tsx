@@ -46,7 +46,12 @@ export const DocumentMenu = ({ documentId, title, onNewTabClick }: Props) => {
             <TrashIcon className="size-4 mr-2" /> Remove
           </DropdownMenuItem>
         </RemoveDialog>
-        <DropdownMenuItem onClick={() => onNewTabClick(documentId)}>
+        <DropdownMenuItem
+          onClick={(e) => {
+            e.stopPropagation();
+            onNewTabClick(documentId);
+          }}
+        >
           <ExternalLinkIcon className="size-4 mr-2" />
           Open a new Tab
         </DropdownMenuItem>
