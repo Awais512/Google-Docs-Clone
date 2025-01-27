@@ -15,6 +15,7 @@ import { api } from "../../convex/_generated/api";
 import { useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { toast } from "sonner";
 
 interface Props {
   documentId: Id<"documents">;
@@ -32,6 +33,8 @@ export const RenameDialog = ({ documentId, children, initialTitle }: Props) => {
     e.preventDefault();
     setIsUpdating(true);
     update({ id: documentId, title: title.trim() || "Untitled" })
+      .catch(() => toast.error("Failed to remove document"))
+      .then(() => toast.success("Document deleted successfully"))
       .then(() => {
         setOpen(false);
       })
