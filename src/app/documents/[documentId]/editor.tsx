@@ -25,7 +25,10 @@ import { FontSizeExtension } from "@/extensions/font-size";
 import { LineHeightExtension } from "@/extensions/line-height";
 import { Ruler } from "./ruler";
 
+import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
+
 export const Editor = () => {
+  const liveblocks = useLiveblocksExtension();
   const { setEditor } = useEditorStore();
 
   const editor = useEditor({
@@ -62,7 +65,8 @@ export const Editor = () => {
       },
     },
     extensions: [
-      StarterKit,
+      liveblocks,
+      StarterKit.configure({ history: false }),
       FontSizeExtension,
       LineHeightExtension.configure({
         types: ["heading", "paragraph"],
