@@ -25,8 +25,8 @@ export default function RootLayout({
       <body className={`${font.className}`}>
         <NuqsAdapter>
           <ConvexClientProvider>
-            <Toaster />
             {children}
+            <Toaster />
           </ConvexClientProvider>
         </NuqsAdapter>
       </body>
