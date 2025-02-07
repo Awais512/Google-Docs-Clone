@@ -20,7 +20,10 @@ export const TemplatesGallery = () => {
   const create = useMutation(api.documents.create);
   const [isCreating, setIsCreating] = useState(false);
 
-  const onTemplateClick = (title: string, initialContent: string) => {
+  const onTemplateClick = (
+    title: string,
+    initialContent: string | undefined
+  ) => {
     setIsCreating(true);
     create({ title, initialContent })
       .catch(() => toast.error("Failed to remove document"))
@@ -51,7 +54,9 @@ export const TemplatesGallery = () => {
                 >
                   <button
                     disabled={isCreating}
-                    onClick={() => onTemplateClick(template.label, "")}
+                    onClick={() =>
+                      onTemplateClick(template.label, template.initialContent)
+                    }
                     style={{
                       backgroundImage: `url(${template.imageUrl})`,
                       backgroundSize: "cover",
