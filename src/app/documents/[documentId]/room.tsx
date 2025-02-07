@@ -51,6 +51,7 @@ export function Room({ children }: { children: ReactNode }) {
         return await res.json();
       }}
       throttle={16}
+      // @ts-expect-error men
       resolveUsers={({ userIds }) => {
         return userIds.map(
           (userId) => users.find((user) => user.id === userId) ?? undefined
